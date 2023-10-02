@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Appointment Form</h2>
+    <form action="#" th:action="@{/appointment/patient/save}" th:object="${appointment}" method="POST">
+        <input type="hidden" th:field="*{appointmentId}">
+        <input type="hidden" th:field="*{patient.patientId}">
+        <div class="mb-4">
+            <input type="text" th:field="*{patient.name}" placeholder="First name" class="form-control col-4">
+        </div>
+        <div class="mb-4">
+            <input type="text" th:field="*{patient.email}" placeholder="Email" class="form-control col-4">
+        </div>
+        <div class="mb-4">
+            <select th:field="*{doctor.doctorId}" class="form-control col-4">
+                <option th:each="doctor : ${doctors}" th:value="${doctor.doctorId}" th:text="${doctor.name}"></option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <input type="date" th:field="*{date}" class="form-control col-4">
+        </div>
+        <div class="mb-4">
+            <input type="time" th:field="*{time}" class="form-control col-4">
+        </div>
+        <div class="mb-4">
+            <input type="text" th:field="*{description}" placeholder="Description" class="form-control col-4">
+        </div>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+        <a href="javascript:history.go(-1)" class="btn btn-primary">Back</a>
+    </form>
+</div>
+<hr>
+</body>
+</html>
